@@ -192,10 +192,121 @@ DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany
 
    
 8. Remove the customer from Tokyo.
+customers> db.customerdetails.remove({ "city":"tokyo"})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+
+
 9.  Find customers not from Los Angeles.
+
+
 10. Find the customers who are older than age 25.
+customers> db.customerdetails.find({ "age": { $gt: "25" } })
+[
+  {
+    _id: ObjectId("654cb1051046f5637d01e441"),
+    name: 'deniel',
+    age: '28',
+    gender: 'male',
+    city: 'syndey'
+  },
+  {
+    _id: ObjectId("654cb1051046f5637d01e443"),
+    name: 'william',
+    age: '26',
+    gender: 'male',
+    city: 'chicago'
+  },
+  {
+    _id: ObjectId("654cb1051046f5637d01e445"),
+    name: 'benjamin',
+    age: '27',
+    gender: 'male',
+    city: 'toronto'
+  },
+  {
+    _id: ObjectId("654cb1051046f5637d01e446"),
+    name: 'maila',
+    age: '29',
+    gender: 'female',
+    city: 'berlin'
+  }
+]
+
+
 11. Retrieve the males who are less than 25.
+customers> db.customerdetails.find({"gender": "Male", "age": { $lt:" 25" } })
+
+
+
 12. Update Francis age to 35, if Francis is not available upsert.
+customers> db.customerdetails.update({ name: "Francis" }, { $set: { age: 35 } }, { upsert: true })
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: ObjectId("654ced6fd626ebd781d3326a"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+
+
 13. Retrieve males who are younger than 30 and older than25.
+customers> db.customerdetails.find({ "gender": "male", "age": { $gt: "25", $lt: "30" } })
+[
+  {
+    _id: ObjectId("654cb1051046f5637d01e441"),
+    name: 'deniel',
+    age: '28',
+    gender: 'male',
+    city: 'syndey'
+  },
+  {
+    _id: ObjectId("654cb1051046f5637d01e443"),
+    name: 'william',
+    age: '26',
+    gender: 'male',
+    city: 'chicago'
+  },
+  {
+    _id: ObjectId("654cb1051046f5637d01e445"),
+    name: 'benjamin',
+    age: '27',
+    gender: 'male',
+    city: 'toronto'
+  }
+]
+
+
 14. Find a customer who is lesser than or equal to 23.
+customers> db.customerdetails.find({ "age": {$lte: "23" } })
+[
+  {
+    _id: ObjectId("654cb1051046f5637d01e440"),
+    name: 'Emaily',
+    age: '22',
+    gender: 'female',
+    city: 'london'
+  },
+  {
+    _id: ObjectId("654cb1051046f5637d01e444"),
+    name: 'olivia',
+    age: '23',
+    gender: 'female',
+    city: 'los angeles'
+  },
+  {
+    _id: ObjectId("654cb6051046f5637d01e449"),
+    name: 'nithu',
+    age: '22',
+    gender: 'female',
+    city: 'srilanka'
+  }
+]
+
+
 15. Remove the customer from Tokyo.
+customers> db.customerdetails.remove({ "city":"tokyo"})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+    
